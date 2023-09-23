@@ -1,1 +1,6 @@
-{"version":"0.2","words":["vuex","axios"],"flagWords":[],"language":"en"}
+{
+  "version": "0.2",
+  "words": ["vuex", "axios"],
+  "flagWords": [],
+  "language": "en"
+}

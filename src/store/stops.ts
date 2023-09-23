@@ -5,16 +5,23 @@ import { Stop } from "@/interfaces";
 
 export interface StopsState {
   stops: Stop[];
+  allLines: number[];
+  selectedLine: number;
 }
 
 const state: StopsState = {
   stops: [],
+  allLines: [],
+  selectedLine: 0,
 };
 
 const mutations: MutationTree<StopsState> = {
   setStops(state, payload: Stop[]) {
     state.stops = payload;
   },
+  setSelectedLine(state, payload: number) {
+    state.selectedLine = payload;
+  }
 };
 
 const actions: ActionTree<StopsState, RootState> = {
@@ -28,6 +35,14 @@ const getters: GetterTree<StopsState, RootState> = {
   getStops(state) {
     return state.stops;
   },
+  getAllLines(state) {
+    return (state.allLines = [
+      ...new Set(state.stops.map((obj) => obj.line)),
+    ].sort());
+  },
+  getSelectedLine(state) {
+    return state.selectedLine
+  }
 };
 
 const stops: Module<StopsState, RootState> = {

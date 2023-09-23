@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LineSelector from "@/components/Line/LineSelector.vue";
+</script>
 
 <template>
-  <div>Bus Lines</div>
+  <div>
+    <LineSelector />
+  </div>
 </template>
 
 <style scoped></style>

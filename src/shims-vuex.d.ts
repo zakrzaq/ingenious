@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { Store } from 'vuex'
-import { RootState } from '@/store'
+import { Store } from "vuex";
+import { RootState } from "@/store";
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
@@ -8,7 +8,6 @@ declare module "@vue/runtime-core" {
   }
 }
 
-declare module 'vuex' {
+declare module "vuex" {
   export function useStore(key?: string): Store<RootState>;
 }
-

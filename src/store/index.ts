@@ -1,3 +1,6 @@
+// PERF: improvements required:
+// TS integration (enums) for getters, actions, mutations
+
 import Vuex, { GetterTree } from "vuex";
 import { stopsModule } from "./stops";
 
@@ -7,10 +10,10 @@ export interface RootState {
 
 const state: RootState = {
   appTitle: "Timetable",
-}
+};
 
 const getters: GetterTree<RootState, RootState> = {
-  getAppTitle: state => state.appTitle
+  getAppTitle: (state) => state.appTitle,
 };
 
 const store = {

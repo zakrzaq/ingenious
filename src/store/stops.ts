@@ -4,32 +4,31 @@ import { fetchAllStops } from "@/services/api";
 import { Stop } from "@/interfaces";
 
 export interface StopsState {
-  stops: Stop[]
+  stops: Stop[];
 }
 
 const state: StopsState = {
   stops: [],
-}
+};
 
 const mutations: MutationTree<StopsState> = {
   setStops(state, payload: Stop[]) {
-    state.stops = payload
-  }
-
-}
+    state.stops = payload;
+  },
+};
 
 const actions: ActionTree<StopsState, RootState> = {
   async fetchStops({ commit }) {
     const res = await fetchAllStops();
     commit("setStops", res);
   },
-}
+};
 
 const getters: GetterTree<StopsState, RootState> = {
-  getStops (state) {
-    return state.stops
-  } 
-}
+  getStops(state) {
+    return state.stops;
+  },
+};
 
 const stops: Module<StopsState, RootState> = {
   // namespaced: true,
@@ -40,4 +39,3 @@ const stops: Module<StopsState, RootState> = {
 };
 
 export { stops as stopsModule };
-

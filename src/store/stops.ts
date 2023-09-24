@@ -21,7 +21,7 @@ const mutations: MutationTree<StopsState> = {
   },
   setSelectedLine(state, payload: number) {
     state.selectedLine = payload;
-  }
+  },
 };
 
 const actions: ActionTree<StopsState, RootState> = {
@@ -41,8 +41,8 @@ const getters: GetterTree<StopsState, RootState> = {
     ].sort());
   },
   getSelectedLine(state) {
-    return state.selectedLine
-  }
+    return state.selectedLine;
+  },
 };
 
 const stops: Module<StopsState, RootState> = {

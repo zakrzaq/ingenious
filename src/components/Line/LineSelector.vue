@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useStore } from "vuex";
 
+import BaseButton from '@/components/BaseButton.vue';
+
 const handleClick = (lineNumber: number) => {
   store.commit("setSelectedLine", lineNumber);
-}
+};
 const store = useStore();
 </script>
 
@@ -11,14 +13,13 @@ const store = useStore();
   <div class="row gx-0 lines-selector">
     <div class="row gx-0 title">Select Bus Line</div>
     <div class="lines-grid">
-      <button
+      <BaseButton
         v-for="line in store.getters.getAllLines"
         :key="line"
         @click="handleClick(line)"
-        class="btn btn-primary"
       >
         {{ line }}
-      </button>
+      </BaseButton>
     </div>
   </div>
 </template>

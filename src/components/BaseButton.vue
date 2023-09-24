@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, defineEmits } from "vue";
+import { defineProps, withDefaults, defineEmits, computed } from "vue";
 export interface Props {
   size?: "sm" | "lg" | "";
   variant?:
@@ -24,6 +24,7 @@ export interface Props {
     | "link"
     | "";
   disabled?: boolean;
+  active?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,18 +32,20 @@ const props = withDefaults(defineProps<Props>(), {
   variant: "primary",
   outline: "",
   disabled: false,
+  active: false,
 });
 
 const emit = defineEmits<{
-  click: (e: Event) => void;
+  click: (e: Event) => Event;
 }>();
 
-const classes = [
+const classes = computed(() => [
   "btn",
   props.size ? `btn-${props.size}` : "",
   props.variant ? `btn-${props.variant}` : "",
   props.outline ? `btn-${props.outline}-${props.variant}` : "",
-];
+  props.active ? "active" : "",
+]);
 </script>
 
 <template>

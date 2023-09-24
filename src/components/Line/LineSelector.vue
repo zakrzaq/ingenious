@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { useStore } from "vuex";
 
-import BaseButton from '@/components/BaseButton.vue';
+import BaseButton from "@/components/BaseButton.vue";
+
+const store = useStore();
 
 const handleClick = (lineNumber: number) => {
   store.commit("setSelectedLine", lineNumber);
 };
-const store = useStore();
+
+const isActive = (line: string): boolean =>
+  parseInt(line) === store.getters.getSelectedLine;
 </script>
 
 <template>
@@ -16,6 +20,7 @@ const store = useStore();
       <BaseButton
         v-for="line in store.getters.getAllLines"
         :key="line"
+        :active="isActive(line)"
         @click="handleClick(line)"
       >
         {{ line }}

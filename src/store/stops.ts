@@ -9,7 +9,9 @@ export interface StopsState {
 }
 
 export type StopsGetters = {
-  getStops: (state: StopsState) => Stop[];
+  getAllStops: (state: StopsState) => Stop[];
+  getAllStopsList: (state: StopsState) => string[];
+  getStopByQuery: (state: StopsState, context: RootState, query: string) => string[];
   getAllLines: (state: StopsState) => string[];
   getSelectedLineStops: (state: StopsState, context: RootState) => Stop[];
   getSelectedLineStopsList: (
@@ -47,6 +49,13 @@ const actions: ActionTree<StopsState, RootState> = {
 const getters: GetterTree<StopsState, RootState> = {
   getAllStops(state) {
     return state.stops;
+  },
+  getAllStropsList(state) {
+    return [...new Set(state.stops.map((obj) => obj.stop))].sort();
+  },
+  getStopByQuery(state, context): string[] {
+    const re = new RegExp(context.getStopQuery, "i");
+    return context.getAllStropsList.filter((item: string) => re.test(item))
   },
   getAllLines(state) {
     return [...new Set(state.stops.map((obj) => obj.line))].sort();

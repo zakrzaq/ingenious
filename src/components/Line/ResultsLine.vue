@@ -1,25 +1,19 @@
 <script setup lang="ts">
-import { defineProps, withDefaults } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 
-export interface Props {
-  line: number;
-}
-
-withDefaults(defineProps<Props>(), {
-  line: 0,
-});
-
 const toggleSortOrder = () => {
   store.commit("toggleLinesAscending");
+};
+const handleStopClick = (stop: string) => {
+  store.commit("setSelectedStop", stop);
 };
 </script>
 
 <template>
   <div class="">
-    <template v-if="line">
+    <template v-if="store.getters.getSelectedLine">
       <h2 class="title">Bus Line: {{ store.getters.getSelectedLine }}</h2>
       <ul class="lines-list">
         <div class="sub-title" @click="toggleSortOrder">
@@ -43,6 +37,7 @@ const toggleSortOrder = () => {
           v-for="stop in store.getters.getSelectedLineStopsList"
           :key="stop"
           class="lines-item"
+          @click="handleStopClick(stop)"
         >
           {{ stop }}
         </li>
@@ -81,6 +76,7 @@ const toggleSortOrder = () => {
   border-top: 1px solid gray;
   font-weight: 400;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .arrows {

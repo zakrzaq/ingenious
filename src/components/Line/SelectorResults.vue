@@ -11,7 +11,7 @@ console.log(store.getters.getSelectedLine);
 <template>
   <div class="row gx-0 bg-white rounded-1 p-4 mt-3">
     <div class="col gx-0">
-      <ResultsLine :line="store.getters.getSelectedLine" />
+      <ResultsLine />
     </div>
     <div class="col gx-0">
       <ResultsStop />

@@ -1,31 +1,39 @@
 import { Module, MutationTree, ActionTree, GetterTree } from "vuex";
 import { RootState } from "@store";
 import { fetchAllStops } from "@/services/api";
+import { sortByTimeStrings } from '@/helpers/time'
 import { Stop } from "@/interfaces";
 
 export interface StopsState {
   stops: Stop[];
-  allLines: number[];
-  selectedLine: number;
-  linesAscending: boolean;
 }
+
+export type StopsGetters = {
+  getStops: (state: StopsState) => Stop[];
+  getAllLines: (state: StopsState) => string[];
+  getSelectedLineStops: (state: StopsState, context: RootState) => Stop[];
+  getSelectedLineStopsList: (
+    state: StopsState,
+    getters: StopsGetters
+  ) => string[];
+  getSelectedLineAndStopStops: (
+    state: StopsState,
+    getters: StopsGetters,
+    context: RootState
+  ) => Stop[];
+};
+
+export type StopsMutations = {
+  setStops(state: StopsState, payload: Stop[]): void;
+};
 
 const state: StopsState = {
   stops: [],
-  allLines: [],
-  selectedLine: 0,
-  linesAscending: false,
 };
 
 const mutations: MutationTree<StopsState> = {
   setStops(state, payload: Stop[]) {
     state.stops = payload;
-  },
-  setSelectedLine(state, payload: number) {
-    state.selectedLine = payload;
-  },
-  toggleLinesAscending(state) {
-    state.linesAscending = !state.linesAscending;
   },
 };
 
@@ -37,35 +45,42 @@ const actions: ActionTree<StopsState, RootState> = {
 };
 
 const getters: GetterTree<StopsState, RootState> = {
-  getStops(state) {
+  getAllStops(state) {
     return state.stops;
   },
   getAllLines(state) {
     return [...new Set(state.stops.map((obj) => obj.line))].sort();
   },
-  getSelectedLine(state) {
-    return state.selectedLine;
-  },
-  getSelectedLineStops(state) {
-    const tmp = state.stops.filter((obj) => obj.line === state.selectedLine);
+  getSelectedLineStops(state, context) {
+    const tmp = state.stops.filter(
+      (obj) => obj.line === context.getSelectedLine
+    );
     return tmp.sort((a, b) => {
       if (a.order !== b.order) {
-        if (state.linesAscending) {
+        if (context.getLinesAscending) {
           return b.order - a.order;
         } else {
           return a.order - b.order;
         }
       }
-      return a.time.localeCompare(b.time);
+      return sortByTimeStrings(a.time, b.time, true);
     });
   },
   getSelectedLineStopsList(state, getters) {
-    const stops: Stop[] = getters.getSelectedLineStops;
-    return [...new Set(stops.map((obj) => obj.stop))];
+    return [
+      ...new Set(getters.getSelectedLineStops.map((obj: Stop) => obj.stop)),
+    ];
   },
-  getLinesAscending(state) {
-    return state.linesAscending;
+  getSelectedLineAndStopStops(state, context) {
+    return context.getSelectedLineStops.filter(
+      (obj: Stop) => obj.stop == context.getSelectedStop
+    );
   },
+  getSelectedLineAndStopsTimes(state, getters) {
+    return [
+      ...new Set(getters.getSelectedLineAndStopStops.map((obj: Stop) => obj.time)),
+    ];
+  }
 };
 
 const stops: Module<StopsState, RootState> = {

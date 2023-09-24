@@ -7,6 +7,7 @@ const store = useStore();
 
 const handleClick = (lineNumber: number) => {
   store.commit("setSelectedLine", lineNumber);
+  store.commit("setSelectedStop", "")
 };
 
 const isActive = (line: string): boolean =>

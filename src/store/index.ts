@@ -3,6 +3,7 @@
 
 import Vuex, { GetterTree } from "vuex";
 import { stopsModule } from "./stops";
+import { uiModule } from "./ui";
 
 export interface RootState {
   appTitle: string;
@@ -23,6 +24,7 @@ const store = {
   actions: {},
   modules: {
     stops: stopsModule,
+    ui: uiModule,
   },
 };
 

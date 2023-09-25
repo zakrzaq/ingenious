@@ -1,28 +1,29 @@
 <script setup lang="ts">
 import { useStore } from "vuex";
+import BasePlaceholderCard from '@/components/BasePlaceholderCard.vue';
 
 const store = useStore();
 </script>
 
 <template>
-  <div class="">
+  <div class="bg-white rounded align-self-start">
     <template v-if="store.getters.getSelectedStop">
-      <h2 class="title">Bus Stop: {{ store.getters.getSelectedStop }}</h2>
-      <ul class="lines-list">
-        <div class="sub-title">Time</div>
+      <h2 class="fw-bolder text-gray-6 font-size-14 px-4 pt-4 pb-2">Bus Stop: {{ store.getters.getSelectedStop }}</h2>
+      <ul>
+        <p class="mb-0 text-size-12 fw-bolder p-4">Time</p>
         <li
           v-for="time in store.getters.getSelectedLineAndStopsTimes"
           :key="time"
-          class="lines-item"
+          class="border-top brd-gray-3 font-size-12 cursor-pointer"
         >
-          {{ time }}
+          <p class="py-3 ps-4 mb-0">{{ time }}</p>
         </li>
       </ul>
     </template>
     <template v-else>
-      <p>no line</p>
+      <BasePlaceholderCard>
+        Please select the bus stop first
+      </BasePlaceholderCard>
     </template>
   </div>
 </template>
-
-<style scoped></style>

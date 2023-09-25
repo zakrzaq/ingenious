@@ -15,13 +15,14 @@ const isActive = (line: string): boolean =>
 </script>
 
 <template>
-  <div class="row gx-0 lines-selector">
-    <div class="row gx-0 title">Select Bus Line</div>
-    <div class="lines-grid">
+  <div class="row gx-0 bg-white mt-4 rounded">
+    <div class="row gx-0 px-4 pt-4 pb-2 text-gray-6 fw-bolder">Select Bus Line</div>
+    <div class="p-4 d-flex gap-2">
       <BaseButton
         v-for="line in store.getters.getAllLines"
         :key="line"
         :active="isActive(line)"
+        size="sm"
         @click="handleClick(line)"
       >
         {{ line }}
@@ -29,22 +30,3 @@ const isActive = (line: string): boolean =>
     </div>
   </div>
 </template>
-
-<style scoped>
-.lines-selector {
-  background: var(--main-colors-main-white, #fff);
-  margin-top: 24px;
-  border-radius: 4px;
-}
-.title {
-  padding: 24px 24px 8px 24px;
-  color: var(--main-colors-main-main, #1a1a1a);
-  font-weight: 600;
-}
-
-.lines-grid {
-  padding: 24px;
-  display: flex;
-  gap: 8px;
-}
-</style>

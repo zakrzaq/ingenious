@@ -1,114 +1,41 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useStore } from "vuex";
+import BaseSortOrder from '@/components/BaseSortOrder.vue';
+import BasePlaceholderCard from '@/components/BasePlaceholderCard.vue';
 
 const store = useStore();
 
-const toggleSortOrder = () => {
-  store.commit("toggleLinesAscending");
-};
+const stopsSortOrder = computed({
+  get: () => store.getters.getLinesAscending,
+  set: (value: boolean) => store.commit("toggleLinesAscending", value),
+})
+
 const handleStopClick = (stop: string) => {
   store.commit("setSelectedStop", stop);
 };
 </script>
 
 <template>
-  <div class="">
+  <div class="bg-white rounded">
     <template v-if="store.getters.getSelectedLine">
-      <h2 class="title">Bus Line: {{ store.getters.getSelectedLine }}</h2>
-      <ul class="lines-list">
-        <div class="sub-title" @click="toggleSortOrder">
-          Bus Stops
-          <div class="arrows">
-            <span
-              class="arrow-up"
-              :class="
-                store.getters.getLinesAscending ? 'arrow-up-selected' : ''
-              "
-            ></span>
-            <span
-              class="arrow-down"
-              :class="
-                !store.getters.getLinesAscending ? 'arrow-down-selected' : ''
-              "
-            ></span>
-          </div>
-        </div>
+      <h2 class="fw-bolder text-gray-6 font-size-14 px-4 pt-4 pb-2">Bus Line: {{ store.getters.getSelectedLine }}</h2>
+      <BaseSortOrder v-model="stopsSortOrder" class="p-4">Bus Line</BaseSortOrder>
+      <ul>
         <li
           v-for="stop in store.getters.getSelectedLineStopsList"
           :key="stop"
-          class="lines-item"
+          class="border-top brd-gray-3 font-size-12 cursor-pointer"
           @click="handleStopClick(stop)"
         >
-          {{ stop }}
+          <p class="py-3 ps-4 mb-0">{{ stop }}</p>
         </li>
       </ul>
     </template>
     <template v-else>
-      <p>no line</p>
+      <BasePlaceholderCard>
+        Please select the bus line first
+      </BasePlaceholderCard>
     </template>
   </div>
 </template>
-
-<style scoped>
-.title {
-  color: var(--main-colors-main-main, #1a1a1a);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 24px;
-}
-
-.sub-title {
-  display: flex;
-  gap: 5px;
-  padding: 24px 0;
-  font-weight: 600;
-  font-size: 12px;
-}
-
-.lines-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.lines-item {
-  padding: 20px 0;
-  border-top: 1px solid gray;
-  font-weight: 400;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.arrows {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-}
-
-.arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid
-    var(--light-main-colors-main-universal-main-lighten-3, #9a9da4);
-}
-.arrow-down {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid
-    var(--light-main-colors-main-universal-main-lighten-3, #9a9da4);
-}
-
-.arrow-down-selected {
-  border-top: 5px solid var(--workspaces-rep-io-rep-io-primary, #1952e1);
-}
-.arrow-up-selected {
-  border-bottom: 5px solid var(--workspaces-rep-io-rep-io-primary, #1952e1);
-}
-</style>

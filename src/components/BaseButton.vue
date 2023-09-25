@@ -58,5 +58,3 @@ const classes = computed(() => [
     <slot />
   </button>
 </template>
-
-<style scoped></style>

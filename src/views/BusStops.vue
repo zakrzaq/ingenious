@@ -18,5 +18,3 @@ const inputValue = computed({
     <p v-for="stop in store.getters.getStopByQuery" :key="stop">{{ stop }}</p>
   </div>
 </template>
-
-<style scoped></style>

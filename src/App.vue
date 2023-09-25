@@ -23,16 +23,5 @@ onMounted(async () => {
 </template>
 
 <style>
-/* NOTE: moved here from main.ts as it was causing issues with project startup */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
-
-body {
-  box-sizing: content-box;
-  background: var(--main-colors-main-light-bg, #f3f4f9);
-  margin: 40px 32px;
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  line-height: 24px;
-}
+@import "@/assets/index.css";
 </style>

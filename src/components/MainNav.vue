@@ -1,31 +1,21 @@
 <script setup lang="ts"></script>
 
 <template>
-  <ul class="nav">
+  <ul class="nav px-4 bg-white rounded">
     <li class="nav-item">
-      <RouterLink :to="{ name: 'Lines' }" class="nav-link">
+      <RouterLink :to="{ name: 'Lines' }" class="nav-link py-3 px-4">
         Bus Lines
       </RouterLink>
     </li>
     <li class="nav-item">
-      <RouterLink :to="{ name: 'Stops' }" class="nav-link"> Stops </RouterLink>
+      <RouterLink :to="{ name: 'Stops' }" class="nav-link py-3 px-4"> Stops </RouterLink>
     </li>
   </ul>
 </template>
 
 <style scoped>
-.nav {
-  padding: 0 24px;
-  border-radius: 4px;
-  background: var(--main-colors-main-white, #fff);
-}
-
 .nav-link {
-  padding: 18px 24px;
   color: var(--main-colors-main-universal-main-lighten-1, #33373c);
-  text-align: center;
-  font-weight: 500;
-  line-height: 24px;
 }
 
 .router-link-active {

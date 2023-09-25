@@ -1,36 +1,35 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, withDefaults } from 'vue';
+import { defineProps, defineEmits, withDefaults } from "vue";
 
-const props = withDefaults(defineProps<{
-  modelValue: boolean
-}>(),{
-  modelValue: false
-})
-const emit = defineEmits(['update:modelValue'])
+const props = withDefaults(
+  defineProps<{
+    modelValue: boolean;
+  }>(),
+  {
+    modelValue: false,
+  }
+);
+const emit = defineEmits<{
+  (e: "update:modelValue", value: boolean): boolean;
+}>();
 
-const toggleOrder = () => emit('update:modelValue', !props.modelValue)
-
-
+const toggleOrder = () => emit("update:modelValue", !props.modelValue);
 </script>
 
 <template>
   <div class="d-flex gap-2 fs-bolder font-size-12">
     <label class="fw-bolder"><slot /></label>
-    <div 
+    <div
       class="d-flex flex-column justify-content-center align-items-center gap-1 cursor-pointer"
       @click="toggleOrder"
     >
       <span
         class="arrow arrow-up"
-        :class="
-          props.modelValue ? 'arrow-up-selected' : ''
-        "
+        :class="props.modelValue ? 'arrow-up-selected' : ''"
       ></span>
       <span
         class="arrow arrow-down"
-        :class="
-          !props.modelValue ? 'arrow-down-selected' : ''
-        "
+        :class="!props.modelValue ? 'arrow-down-selected' : ''"
       ></span>
     </div>
   </div>
@@ -59,6 +58,4 @@ const toggleOrder = () => emit('update:modelValue', !props.modelValue)
 .arrow-up-selected {
   border-bottom: 5px solid var(--workspaces-rep-io-rep-io-primary, #1952e1);
 }
-
 </style>
-

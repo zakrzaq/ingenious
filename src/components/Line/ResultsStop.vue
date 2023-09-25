@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStore } from "vuex";
-import BasePlaceholderCard from '@/components/BasePlaceholderCard.vue';
+import BasePlaceholderCard from "@/components/BasePlaceholderCard.vue";
+import BaseListItem from "@/components/BaseListItem.vue";
 
 const store = useStore();
 </script>
@@ -8,16 +9,18 @@ const store = useStore();
 <template>
   <div class="bg-white rounded align-self-start">
     <template v-if="store.getters.getSelectedStop">
-      <h2 class="fw-bolder text-gray-6 font-size-14 px-4 pt-4 pb-2">Bus Stop: {{ store.getters.getSelectedStop }}</h2>
+      <h2 class="fw-bolder text-gray-6 font-size-14 px-4 pt-4 pb-2">
+        Bus Stop: {{ store.getters.getSelectedStop }}
+      </h2>
+      <p class="mb-0 text-size-12 fw-bolder p-4">Time</p>
       <ul>
-        <p class="mb-0 text-size-12 fw-bolder p-4">Time</p>
-        <li
+        <BaseListItem
           v-for="time in store.getters.getSelectedLineAndStopsTimes"
           :key="time"
-          class="border-top brd-gray-3 font-size-12 cursor-pointer"
+          :item="time"
         >
           <p class="py-3 ps-4 mb-0">{{ time }}</p>
-        </li>
+        </BaseListItem>
       </ul>
     </template>
     <template v-else>

@@ -8,7 +8,9 @@
       </RouterLink>
     </li>
     <li class="nav-item">
-      <RouterLink :to="{ name: 'Stops' }" class="nav-link py-3 px-4"> Stops </RouterLink>
+      <RouterLink :to="{ name: 'Stops' }" class="nav-link py-3 px-4">
+        Stops
+      </RouterLink>
     </li>
   </ul>
 </template>

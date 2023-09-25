@@ -8,8 +8,8 @@ import ResultsStop from "@/components/Line/ResultsStop.vue";
   <div>
     <LineSelector />
     <div class="row gx-0 mt-3 d-flex gap-3">
-        <ResultsLine class="col gx-0 w-50" />
-        <ResultsStop class="col gx-0 w-50" />
+      <ResultsLine class="col gx-0 w-50" />
+      <ResultsStop class="col gx-0 w-50" />
     </div>
   </div>
 </template>

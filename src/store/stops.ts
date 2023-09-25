@@ -1,7 +1,7 @@
 import { Module, MutationTree, ActionTree, GetterTree } from "vuex";
 import { RootState } from "@store";
 import { fetchAllStops } from "@/services/api";
-import { sortByTimeStrings } from '@/helpers/time'
+import { sortByTimeStrings } from "@/helpers/time";
 import { Stop } from "@/interfaces";
 
 export interface StopsState {
@@ -11,7 +11,11 @@ export interface StopsState {
 export type StopsGetters = {
   getAllStops: (state: StopsState) => Stop[];
   getAllStopsList: (state: StopsState) => string[];
-  getStopByQuery: (state: StopsState, context: RootState, query: string) => string[];
+  getStopByQuery: (
+    state: StopsState,
+    context: RootState,
+    query: string
+  ) => string[];
   getAllLines: (state: StopsState) => string[];
   getSelectedLineStops: (state: StopsState, context: RootState) => Stop[];
   getSelectedLineStopsList: (
@@ -55,7 +59,10 @@ const getters: GetterTree<StopsState, RootState> = {
   },
   getStopByQuery(state, context): string[] {
     const re = new RegExp(context.getStopQuery, "i");
-    return context.getAllStropsList.filter((item: string) => re.test(item))
+    const timesList = context.getAllStropsList.filter((item: string) =>
+      re.test(item)
+    );
+    return context.getStopsAscending ? timesList.reverse() : timesList;
   },
   getAllLines(state) {
     return [...new Set(state.stops.map((obj) => obj.line))].sort();
@@ -87,9 +94,11 @@ const getters: GetterTree<StopsState, RootState> = {
   },
   getSelectedLineAndStopsTimes(state, getters) {
     return [
-      ...new Set(getters.getSelectedLineAndStopStops.map((obj: Stop) => obj.time)),
+      ...new Set(
+        getters.getSelectedLineAndStopStops.map((obj: Stop) => obj.time)
+      ),
     ];
-  }
+  },
 };
 
 const stops: Module<StopsState, RootState> = {

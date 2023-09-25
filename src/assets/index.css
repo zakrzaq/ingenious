@@ -1,13 +1,18 @@
 /* NOTE: moved here from main.ts as it was causing issues with project startup */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
+@import url("buttons.css");
 
 :root {
   --gray-6: #1a1a1a;
+  --pr-blue: #1952e1;
+  --pr-blue-hover: #2e3e6e;
+  --light-bg: #f3f4f9;
+  --lighten-bg: #f8f8fb;
 }
 
 body {
   box-sizing: content-box;
-  background: var(--main-colors-main-light-bg, #f3f4f9);
+  background: var(--light-bg);
   margin: 40px 32px;
   font-family: Inter;
   font-size: 14px;
@@ -16,15 +21,18 @@ body {
 }
 
 /* RESET */
-ol, ul, li {
+ol,
+ul,
+li {
   margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: inherit;
-	font: inherit;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
@@ -33,7 +41,7 @@ ol, ul {
   color: var(--gray-6);
 }
 .brd-gray-3 {
-  border-color: #F3F4F9;
+  border-color: #f3f4f9;
 }
 .font-size-12 {
   font-size: 12px;
@@ -44,12 +52,18 @@ ol, ul {
 .w-50 {
   width: 50%;
 }
+.max-w-content {
+  max-width: fit-content;
+}
 .min-h-350 {
   min-height: 350px;
 }
 .border-dashed {
-  border: 2px dashed var(--main-colors-main-universal-main-lighten-3, #9A9DA4);
+  border: 2px dashed var(--main-colors-main-universal-main-lighten-3, #9a9da4);
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.transition {
+  transition: ease 0.2s all;
 }

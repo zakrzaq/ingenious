@@ -4,6 +4,7 @@ import { RootState } from "@store";
 export interface UiState {
   selectedLine: number;
   linesAscending: boolean;
+  stopsAscending: boolean;
   selectedStop: string;
   stopQuery: string;
 }
@@ -11,6 +12,7 @@ export interface UiState {
 export type UiGetters = {
   getSelectedLine: (state: UiState) => number;
   getLinesAscending: (state: UiState) => boolean;
+  getStopsAscending: (state: UiState) => boolean;
   getSelectedStop: (state: UiState) => string;
   getStopQuery: (state: UiState) => string;
 };
@@ -18,6 +20,7 @@ export type UiGetters = {
 export type UiMutations = {
   setSelectedLine(state: UiState, payload: number): void;
   toggleLinesAscending(state: UiState): void;
+  toggleStopsAscending(state: UiState): void;
   setSelectedStop(state: UiState, payload: string): void;
   setStopQuery(state: UiState, payload: string): void;
 };
@@ -26,6 +29,7 @@ export type UiMutations = {
 const state: UiState = {
   selectedLine: 0,
   linesAscending: false,
+  stopsAscending: false,
   selectedStop: "",
   stopQuery: "",
 };
@@ -37,12 +41,15 @@ const mutations: MutationTree<UiState> & UiMutations = {
   toggleLinesAscending(state) {
     state.linesAscending = !state.linesAscending;
   },
+  toggleStopsAscending(state) {
+    state.stopsAscending = !state.stopsAscending;
+  },
   setSelectedStop(state, payload: string) {
     state.selectedStop = payload;
   },
   setStopQuery(state, payload: string) {
-    state.stopQuery = payload
-  }
+    state.stopQuery = payload;
+  },
 };
 
 const actions: ActionTree<UiState, RootState> = {};
@@ -54,12 +61,15 @@ const getters: GetterTree<UiState, RootState> & UiGetters = {
   getLinesAscending(state) {
     return state.linesAscending;
   },
+  getStopsAscending(state) {
+    return state.stopsAscending;
+  },
   getSelectedStop(state) {
     return state.selectedStop;
   },
   getStopQuery(state) {
-    return state.stopQuery
-  }
+    return state.stopQuery;
+  },
 };
 
 const ui: Module<UiState, RootState> = {

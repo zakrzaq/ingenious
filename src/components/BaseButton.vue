@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  click: (e: Event) => Event;
+  (e: "click", value: Event): Event;
 }>();
 
 const classes = computed(() => [
@@ -58,3 +58,11 @@ const classes = computed(() => [
     <slot />
   </button>
 </template>
+
+<style scoped>
+.btn-sm {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  min-width: 54px;
+}
+</style>

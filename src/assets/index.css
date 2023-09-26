@@ -8,16 +8,23 @@
   --pr-blue-hover: #2e3e6e;
   --light-bg: #f3f4f9;
   --lighten-bg: #f8f8fb;
+  --lighten-3: #9a9da4;
 }
 
 body {
   box-sizing: content-box;
   background: var(--light-bg);
-  margin: 40px 32px;
+  margin: 40px auto;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   line-height: 24px;
+}
+
+#app {
+  margin: 40px auto;
+  max-width: 1426px;
+  padding: 24px;
 }
 
 /* RESET */
@@ -41,7 +48,7 @@ ul {
   color: var(--gray-6);
 }
 .brd-gray-3 {
-  border-color: #f3f4f9;
+  border-color: var(--lighten-bg);
 }
 .font-size-12 {
   font-size: 12px;
@@ -59,7 +66,7 @@ ul {
   min-height: 350px;
 }
 .border-dashed {
-  border: 2px dashed var(--main-colors-main-universal-main-lighten-3, #9a9da4);
+  border: 2px dashed var(--lighten-3);
 }
 .cursor-pointer {
   cursor: pointer;

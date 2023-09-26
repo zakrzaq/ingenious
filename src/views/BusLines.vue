@@ -15,8 +15,6 @@ const stopsSortOrder = computed({
   set: (value: boolean) => store.commit("toggleLinesAscending", value),
 });
 
-const isStopSelected = (stop: string) => stop === store.getters.getSelectedStop;
-
 const selectStop = (stop: string) => {
   store.commit("setSelectedStop", stop);
 };
@@ -37,7 +35,7 @@ const selectStop = (stop: string) => {
             v-for="stop in store.getters.getSelectedLineStopsList"
             :key="stop"
             :item="stop"
-            :active="isStopSelected(stop)"
+            :active-id="store.getters.getSelectedStop"
             cursor="pointer"
             @click="selectStop(stop)"
           >

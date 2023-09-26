@@ -62,7 +62,7 @@ const getters: GetterTree<StopsState, RootState> = {
     const timesList = context.getAllStropsList.filter((item: string) =>
       re.test(item)
     );
-    return context.getStopsAscending ? timesList.reverse() : timesList;
+    return context.getStopsAscending ? timesList : timesList.reverse();
   },
   getAllLines(state) {
     return [...new Set(state.stops.map((obj) => obj.line))].sort();
@@ -74,9 +74,9 @@ const getters: GetterTree<StopsState, RootState> = {
     return tmp.sort((a, b) => {
       if (a.order !== b.order) {
         if (context.getLinesAscending) {
-          return b.order - a.order;
-        } else {
           return a.order - b.order;
+        } else {
+          return b.order - a.order;
         }
       }
       return sortByTimeStrings(a.time, b.time, true);

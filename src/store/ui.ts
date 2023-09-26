@@ -25,11 +25,10 @@ export type UiMutations = {
   setStopQuery(state: UiState, payload: string): void;
 };
 
-// NOTE: maybe linesDescending - think about it
 const state: UiState = {
   selectedLine: 0,
-  linesAscending: false,
-  stopsAscending: false,
+  linesAscending: true,
+  stopsAscending: true,
   selectedStop: "",
   stopQuery: "",
 };

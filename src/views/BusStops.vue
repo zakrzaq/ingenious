@@ -2,8 +2,9 @@
 import { computed } from "vue";
 import { useStore } from "@/store";
 import BaseInput from "@/components/BaseInput.vue";
-import BaseSortOrder from "@/components/BaseSortOrder.vue";
+import BaseTitleWithSort from "@/components/BaseTitleWithSort.vue";
 import BaseListItem from "@/components/BaseListItem.vue";
+import SelectorResults from "@/components/Selector/SelectorResults.vue";
 
 const store = useStore();
 
@@ -21,9 +22,9 @@ const isActive = (stop: string) => store.getters.getSelectedStop === stop;
 </script>
 
 <template>
-  <div class="row gx-0 mt-3 bg-white rounded">
+  <SelectorResults class="mt-16">
     <BaseInput type="text" v-model="inputValue" icon="search" class="p-2" />
-    <BaseSortOrder v-model="sortOrder" class="p-4">Time</BaseSortOrder>
+    <BaseTitleWithSort v-model="sortOrder" :sort="true">Time</BaseTitleWithSort>
     <ul>
       <BaseListItem
         v-for="stop in store.getters.getStopByQuery"
@@ -31,8 +32,8 @@ const isActive = (stop: string) => store.getters.getSelectedStop === stop;
         :key="stop"
         :active="isActive(stop)"
       >
-        <p class="py-3 ps-4 mb-0">{{ stop }}</p>
+        {{ stop }}
       </BaseListItem>
     </ul>
-  </div>
+  </SelectorResults>
 </template>

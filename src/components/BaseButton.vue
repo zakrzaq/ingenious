@@ -47,7 +47,7 @@ const classes = computed(() => [
 
   &--sm {
     padding: 8px 16px;
-    min-width: 54px;
+    min-width: 55px;
   }
 
   &--primary {
@@ -55,13 +55,16 @@ const classes = computed(() => [
     background: $pr-blue;
     border-color: $pr-blue;
 
-    &:hover, &:focus, & .active {
+    &:hover,
+    &:focus,
+    & .active {
       background: $pr-blue-hover;
       border-color: $pr-blue-hover;
     }
     &:disabled {
-      background: gray;
-      border-color: gray;
+      background: $pr-blue-disabled;
+      border-color: $pr-blue-disabled;
+      cursor: not-allowed;
     }
   }
 }

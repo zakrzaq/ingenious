@@ -20,11 +20,9 @@ const isLineAvailable = (line: number): boolean =>
 </script>
 
 <template>
-  <div class="row gx-0 bg-white mt-4 rounded">
-    <div class="row gx-0 px-4 pt-4 pb-2 text-gray-6 fw-bolder">
-      Select Bus Line
-    </div>
-    <div class="p-4 d-flex flex-wrap gap-2">
+  <div class="line-selector">
+    <p class="line-selector__title">Select Bus Line</p>
+    <div class="line-selector__controls">
       <BaseButton
         v-for="line in availableLines"
         :key="line"
@@ -38,3 +36,24 @@ const isLineAvailable = (line: number): boolean =>
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+.line-selector {
+  background: white;
+  margin-top: 16px;
+  border-radius: 4px;
+
+  &__title {
+    padding: 24px 24px 8px 24px;
+    color: $pr-black;
+    font-weight: 600;
+  }
+
+  &__controls {
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+</style>

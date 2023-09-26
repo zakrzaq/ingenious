@@ -1,34 +1,8 @@
-  $pr-blue: #1952e1;
-  $pr-blue-hover: #2e3e6e;
-  $light-bg: #f3f4f9;
-  $lighten-bg: #f8f8fb;
-  $lighten-3: #9a9da4;
-  $lighten-1: #33373C;
-  $pr-black: #1a1a1a;
-
-
-
-  .base-input {
-  color: var(--main-colors-main-main, #1a1a1a);
-  line-height: 16px;
-  min-width: 288px;
-}
-.base-input::placeholder {
-  color: var(--main-colors-main-universal-main-lighten-3, #9a9da4);
-}
-.form-control {
-  font-size: 12px;
-  font-family: Inter;
-  padding: 12px 16px;
-}
-.form-control:focus {
-  border: var(--pr-blue) solid 1px;
-  box-shadow: unset;
-}
-
-.input-icon {
-  top: 0;
-  right: 16px;
-  transform: translateY(calc((50px - 24px) / 2));
-}
-
+$pr-blue: #1952e1;
+$pr-blue-hover: #2e3e6e;
+$pr-blue-disabled: #4674e7;
+$light-bg: #f3f4f9;
+$lighten-bg: #f8f8fb;
+$lighten-3: #9a9da4;
+$lighten-1: #33373c;
+$pr-black: #1a1a1a;

@@ -39,9 +39,15 @@ const classList = computed(() => [
   font-size: 12px;
   line-height: 16px;
   border-top: solid 1px $light-bg;
+  transition: 0.2s ease all;
 
   &:hover {
     background: $lighten-bg;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 20px 0 20px 24px;
   }
 }
 </style>

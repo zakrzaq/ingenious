@@ -53,8 +53,7 @@ const focused = ref(false);
 .base-input {
   position: relative;
   display: inline-block;
-
-  /* &__label {} */
+  margin: 8px;
 
   &__input {
     padding: 12px 16px;

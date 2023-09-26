@@ -22,5 +22,4 @@ onMounted(async () => {
   </main>
 </template>
 
-<style>
-</style>
+<style></style>

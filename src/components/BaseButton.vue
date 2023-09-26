@@ -2,27 +2,7 @@
 import { defineProps, withDefaults, defineEmits, computed } from "vue";
 export interface Props {
   size?: "sm" | "lg" | "";
-  variant?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark"
-    | "link";
-  outline?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark"
-    | "link"
-    | "";
+  variant?: "primary";
   disabled?: boolean;
   active?: boolean;
 }
@@ -30,7 +10,6 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {
   size: "",
   variant: "primary",
-  outline: "",
   disabled: false,
   active: false,
 });
@@ -41,9 +20,8 @@ const emit = defineEmits<{
 
 const classes = computed(() => [
   "btn",
-  props.size ? `btn-${props.size}` : "",
-  props.variant ? `btn-${props.variant}` : "",
-  props.outline ? `btn-${props.outline}-${props.variant}` : "",
+  props.size ? `btn--${props.size}` : "",
+  props.variant ? `btn--${props.variant}` : "",
   props.active ? "active" : "",
 ]);
 </script>
@@ -59,10 +37,32 @@ const classes = computed(() => [
   </button>
 </template>
 
-<style scoped>
-.btn-sm {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  min-width: 54px;
+<style scoped lang="scss">
+.btn {
+  padding: 12px 24px;
+  min-width: 80px;
+  border-radius: 4px;
+  border: 1px solid gray;
+  transition: ease 0.2s all;
+
+  &--sm {
+    padding: 8px 16px;
+    min-width: 54px;
+  }
+
+  &--primary {
+    color: white;
+    background: $pr-blue;
+    border-color: $pr-blue;
+
+    &:hover, &:focus, & .active {
+      background: $pr-blue-hover;
+      border-color: $pr-blue-hover;
+    }
+    &:disabled {
+      background: gray;
+      border-color: gray;
+    }
+  }
 }
 </style>

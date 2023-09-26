@@ -25,15 +25,23 @@ const classList = computed(() => [
     v-if="item"
     :key="item"
     :active="active"
-    class="border-top brd-gray-3 font-size-12 transition list-item"
+    class="list-item"
     :class="classList"
   >
     <slot />
   </li>
 </template>
 
-<style scoped>
-.list-item:hover {
-  background: var(--lighten-bg);
+<style scoped lang="scss">
+.list-item {
+  padding: 20px 0 20px 24px;
+  color: $lighten-1;
+  font-size: 12px;
+  line-height: 16px;
+  border-top: solid 1px $light-bg;
+
+  &:hover {
+    background: $lighten-bg;
+  }
 }
 </style>

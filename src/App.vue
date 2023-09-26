@@ -23,5 +23,4 @@ onMounted(async () => {
 </template>
 
 <style>
-@import "@/assets/index.css";
 </style>

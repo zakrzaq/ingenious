@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 import BaseSortOrder from "@/components/BaseSortOrder.vue";
 import BasePlaceholderCard from "@/components/BasePlaceholderCard.vue";
 import BaseListItem from "@/components/BaseListItem.vue";

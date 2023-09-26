@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 
 const store = useStore();
 </script>

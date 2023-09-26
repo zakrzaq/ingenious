@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 import BasePlaceholderCard from "@/components/BasePlaceholderCard.vue";
 import BaseListItem from "@/components/BaseListItem.vue";
 

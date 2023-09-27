@@ -2,49 +2,31 @@
 import { defineProps, withDefaults, defineEmits, computed } from "vue";
 export interface Props {
   size?: "sm" | "lg" | "";
-  variant?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark"
-    | "link";
-  outline?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark"
-    | "link"
-    | "";
+  variant?: "primary";
+  value?: string;
   disabled?: boolean;
-  active?: boolean;
+  activeId?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   size: "",
   variant: "primary",
-  outline: "",
+  value: "",
   disabled: false,
-  active: false,
+  activeId: 0,
 });
 
 const emit = defineEmits<{
   (e: "click", value: Event): Event;
 }>();
 
+const isActive = computed(() => props.activeId === parseInt(props.value));
+
 const classes = computed(() => [
   "btn",
-  props.size ? `btn-${props.size}` : "",
-  props.variant ? `btn-${props.variant}` : "",
-  props.outline ? `btn-${props.outline}-${props.variant}` : "",
-  props.active ? "active" : "",
+  props.size ? `btn--${props.size}` : "",
+  props.variant ? `btn--${props.variant}` : "",
+  isActive.value ? `btn--${props.variant}-active` : "",
 ]);
 </script>
 
@@ -59,10 +41,35 @@ const classes = computed(() => [
   </button>
 </template>
 
-<style scoped>
-.btn-sm {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  min-width: 54px;
+<style scoped lang="scss">
+.btn {
+  padding: 12px 24px;
+  min-width: 80px;
+  border-radius: 4px;
+  border: 1px solid gray;
+  transition: ease 0.2s all;
+
+  &--sm {
+    padding: 8px 16px;
+    min-width: 55px;
+  }
+
+  &--primary {
+    color: white;
+    background: $pr-blue;
+    border-color: $pr-blue;
+
+    &:hover,
+    &:focus,
+    &-active {
+      background: $pr-blue-hover;
+      border-color: $pr-blue-hover;
+    }
+    &:disabled {
+      background: $pr-blue-disabled;
+      border-color: $pr-blue-disabled;
+      cursor: not-allowed;
+    }
+  }
 }
 </style>

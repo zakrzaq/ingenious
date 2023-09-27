@@ -4,18 +4,20 @@ import { computed, defineProps, withDefaults } from "vue";
 const props = withDefaults(
   defineProps<{
     item: string;
-    active?: boolean;
+    activeId?: string;
     cursor?: "" | "pointer";
   }>(),
   {
     item: "",
-    active: false,
+    activeId:"",
     cursor: "",
   }
 );
 
+const active = computed(() => props.activeId === props.item);
+
 const classList = computed(() => [
-  props.active ? "text-primary" : "",
+  active.value ? "list-item--active" : "",
   props.cursor ? "cursor-pointer" : "",
 ]);
 </script>
@@ -24,16 +26,33 @@ const classList = computed(() => [
   <li
     v-if="item"
     :key="item"
-    :active="active"
-    class="border-top brd-gray-3 font-size-12 transition list-item"
+    class="list-item"
     :class="classList"
   >
     <slot />
   </li>
 </template>
 
-<style scoped>
-.list-item:hover {
-  background: var(--lighten-bg);
+<style scoped lang="scss">
+.list-item {
+  padding: 20px 0 20px 24px;
+  color: $lighten-1;
+  font-size: 12px;
+  line-height: 16px;
+  border-top: solid 1px $light-bg;
+  transition: 0.2s ease all;
+
+  &--active {
+    color: $pr-blue;
+  }
+
+  &:hover {
+    background: $lighten-bg;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 20px 0 20px 24px;
+  }
 }
 </style>

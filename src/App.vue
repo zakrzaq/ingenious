@@ -22,6 +22,4 @@ onMounted(async () => {
   </main>
 </template>
 
-<style>
-@import "@/assets/index.css";
-</style>
+<style></style>

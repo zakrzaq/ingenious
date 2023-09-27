@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
+
+body {
+  box-sizing: content-box;
+  background: $light-bg;
+  margin: 40px auto;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 170%;
+}
+
+#app {
+  margin: 40px auto;
+  max-width: 1426px;
+  padding: 0 24px;
+}
+
+/* RESET */
+p,
+ol,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+/* UTILITY */
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+.col-50 {
+  width: 50%;
+  align-self: flex-start;
+}
+.mt-16 {
+  margin-top: 16px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

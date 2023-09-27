@@ -28,13 +28,13 @@ const focused = ref(false);
 </script>
 
 <template>
-  <div class="position-relative d-flex flex-column max-w-content">
-    <label :for="name" class="max-w-content">
+  <div class="base-input">
+    <label :for="name" class="base-input__label">
       <slot />
     </label>
     <input
       :type="type"
-      class="form-control px-3 py-2 max-w-content base-input"
+      class="base-input__input"
       :id="id"
       :placeholder="placeholder"
       @input="
@@ -43,34 +43,41 @@ const focused = ref(false);
       @focus="focused = !focused"
       @blur="focused = !focused"
     />
-    <div v-if="!!icon" class="position-absolute input-icon">
+    <div v-if="!!icon" class="base-input__icon">
       <SearchIcon v-if="icon === 'search'" :focused="focused" />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .base-input {
-  color: var(--main-colors-main-main, #1a1a1a);
-  line-height: 16px;
-  min-width: 288px;
-}
-.base-input::placeholder {
-  color: var(--main-colors-main-universal-main-lighten-3, #9a9da4);
-}
-.form-control {
-  font-size: 12px;
-  font-family: Inter;
-  padding: 12px 16px;
-}
-.form-control:focus {
-  border: var(--pr-blue) solid 1px;
-  box-shadow: unset;
-}
+  position: relative;
+  display: inline-block;
+  margin: 8px;
 
-.input-icon {
-  top: 0;
-  right: 16px;
-  transform: translateY(calc((50px - 24px) / 2));
+  &__input {
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid $lighten-3;
+    font-size: 12px;
+    line-height: 16px;
+    color: $pr-black;
+    min-width: 288px;
+    outline: 0;
+
+    &::placeholder {
+      color: $lighten-3;
+    }
+    &:focus {
+      border-color: $pr-blue;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 16px;
+    top: 0;
+    transform: translateY(calc((46px - 20px) / 2));
+  }
 }
 </style>

@@ -12,9 +12,6 @@ const handleClick = (lineNumber: number) => {
   store.commit("setSelectedStop", "");
 };
 
-const isActive = (line: number): boolean =>
-  line === store.getters.getSelectedLine;
-
 const isLineAvailable = (line: number): boolean =>
   store.getters.getAllLines.includes(line);
 </script>
@@ -26,7 +23,8 @@ const isLineAvailable = (line: number): boolean =>
       <BaseButton
         v-for="line in availableLines"
         :key="line"
-        :active="isActive(line)"
+        :value="line.toString()"
+        :active-id="store.getters.getSelectedLine"
         :disabled="!isLineAvailable(line)"
         size="sm"
         @click="handleClick(line)"
